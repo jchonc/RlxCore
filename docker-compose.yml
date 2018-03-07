@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  hl7core.service:
+    image: hl7coreservice
+    build:
+      context: .
+      dockerfile: HL7Core.Service/Dockerfile
