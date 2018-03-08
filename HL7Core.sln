@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL7Core.Service", "HL7Core.Service\HL7Core.Service.csproj", "{921727FB-0597-4A0A-9634-2BB1B5C2255D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7Core.Service", "src\HL7Core.Service\HL7Core.Service.csproj", "{921727FB-0597-4A0A-9634-2BB1B5C2255D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FE064727-D7E5-4FDB-84BD-BFFB0CE3F7EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2661CA03-102F-446C-8FE3-D36BCD6E3B01}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7Core.Tools", "src\HL7Core.Tools\HL7Core.Tools.csproj", "{93C632A4-4658-457C-8C85-ABAD6CF5B1A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{177663C7-3BF3-4D1D-BDFB-3CC660CF22F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{6FDBFD04-13FF-41C5-A5A6-8AE8AA8E1B4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7Core.Tools.Tests", "tests\HL7Core.Tools.Tests\HL7Core.Tools.Tests.csproj", "{DB74F97D-6F47-4424-997B-C874AA7D24F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HL7Core.PersistentQueue", "src\HL7Core.PersistentQueue\HL7Core.PersistentQueue.csproj", "{F5A685F8-A2A6-4590-9059-975616AB97FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +33,28 @@ Global
 		{FE064727-D7E5-4FDB-84BD-BFFB0CE3F7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE064727-D7E5-4FDB-84BD-BFFB0CE3F7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE064727-D7E5-4FDB-84BD-BFFB0CE3F7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C632A4-4658-457C-8C85-ABAD6CF5B1A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C632A4-4658-457C-8C85-ABAD6CF5B1A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C632A4-4658-457C-8C85-ABAD6CF5B1A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C632A4-4658-457C-8C85-ABAD6CF5B1A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB74F97D-6F47-4424-997B-C874AA7D24F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB74F97D-6F47-4424-997B-C874AA7D24F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB74F97D-6F47-4424-997B-C874AA7D24F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB74F97D-6F47-4424-997B-C874AA7D24F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5A685F8-A2A6-4590-9059-975616AB97FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5A685F8-A2A6-4590-9059-975616AB97FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5A685F8-A2A6-4590-9059-975616AB97FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5A685F8-A2A6-4590-9059-975616AB97FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{921727FB-0597-4A0A-9634-2BB1B5C2255D} = {2661CA03-102F-446C-8FE3-D36BCD6E3B01}
+		{93C632A4-4658-457C-8C85-ABAD6CF5B1A6} = {2661CA03-102F-446C-8FE3-D36BCD6E3B01}
+		{6FDBFD04-13FF-41C5-A5A6-8AE8AA8E1B4A} = {177663C7-3BF3-4D1D-BDFB-3CC660CF22F5}
+		{DB74F97D-6F47-4424-997B-C874AA7D24F0} = {6FDBFD04-13FF-41C5-A5A6-8AE8AA8E1B4A}
+		{F5A685F8-A2A6-4590-9059-975616AB97FC} = {2661CA03-102F-446C-8FE3-D36BCD6E3B01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F54DE5C5-C936-418E-8FBE-71362573BEC9}

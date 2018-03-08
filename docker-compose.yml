@@ -5,4 +5,4 @@ services:
     image: hl7coreservice
     build:
       context: .
-      dockerfile: HL7Core.Service/Dockerfile
+      dockerfile: src/HL7Core.Service/Dockerfile
