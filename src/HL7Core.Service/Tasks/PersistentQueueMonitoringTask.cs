@@ -41,14 +41,14 @@ namespace HL7Core.Service.Tasks
         {
             while(!stoppingToken.IsCancellationRequested)
             {
-                var queueSize = _sqliteQueueManager.Count();
+                 var queueSize = _sqliteQueueManager.Count();
                 // Multiple level warning?
                 _sqliteQueueManager.IsClosed = (queueSize >= _settings.EmailAlertStopLevel);
                 if ( queueSize >= _settings.EmailAlertRecordsLevel)
                 {
 
                 }
-                await Task.Delay(_settings.QueueCheckInterval * 1000, stoppingToken);
+                await Task.Delay( TimeSpan.FromSeconds(_settings.QueueCheckInterval), stoppingToken);
             }
         }
     }

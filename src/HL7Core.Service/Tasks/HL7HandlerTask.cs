@@ -38,18 +38,19 @@ namespace HL7Core.Service.Tasks
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            /*
             while(!stoppingToken.IsCancellationRequested)
             {
                 var result = _sqliteQueueManager.ProcessAllItems(HandlePacket, stoppingToken);
                 if (result == 0)
                 {
-                    await Task.Delay(_settings.IdleWhenEmpty, stoppingToken);
+                    await Task.Delay(TimeSpan.FromSeconds(_settings.IdleWhenEmpty), stoppingToken);
                 }
                 else
                 {
                     await Task.Yield();
                 }
-            }
+            }*/
         }
 
         protected void HandlePacket(string packet)

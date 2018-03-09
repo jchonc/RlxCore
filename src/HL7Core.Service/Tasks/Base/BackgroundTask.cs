@@ -19,7 +19,7 @@ namespace HL7Core.Service.Tasks
     {
         private Task _executingTask;
 
-        private readonly CancellationTokenSource _stoppingCts = new CancellationTokenSource();
+        private CancellationTokenSource _stoppingCts;
 
         /// <summary>
         /// This method is called when the <see cref="IHostedService"/> starts. The implementation should return a task that represents
@@ -35,6 +35,7 @@ namespace HL7Core.Service.Tasks
         /// <param name="cancellationToken">Indicates that the start process has been aborted.</param>
         public virtual Task StartAsync(CancellationToken cancellationToken)
         {
+            _stoppingCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             // Store the task we're executing
             _executingTask = ExecuteAsync(_stoppingCts.Token);
 

@@ -19,7 +19,6 @@ namespace HL7Core.PersistentQueue
     {
         public string QueueFileName { get; set; }
         public string QueueTableName { get; set; }
-        public string QueueColumnName { get; set; }
     }
 
     public class SqliteQueueManager: ISqliteQueueManager
@@ -33,7 +32,7 @@ namespace HL7Core.PersistentQueue
         public SqliteQueueManager(IOptions<SqliteQueueManagerSettings> settings)
         {
             _settings = settings?.Value ?? throw new ArgumentNullException(nameof(settings));
-            _connectionString = String.Format("Data Source={0};Pooling=True;Max Pool Size=100;", _settings.QueueFileName);
+            _connectionString = String.Format("Data Source={0};Mode=ReadWriteCreate;", _settings.QueueFileName);
             _queueTableName = _settings.QueueTableName;
             EnsureTable();
         }

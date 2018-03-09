@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
 
 namespace HL7Core.Service
 {
@@ -32,29 +33,30 @@ namespace HL7Core.Service
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-
             services.AddTransient<IHL7Acknowledger, HL7Acknowledger>();
 
             // Setup the persistent queue first.
-            services.Configure<SqliteQueueManager>(options => Configuration.GetSection("Queue").Bind(options));
+            services.Configure<SqliteQueueManagerSettings>(options => Configuration.GetSection("Queue").Bind(options));
             services.AddSingleton<ISqliteQueueManager, SqliteQueueManager>();
 
             // Setup the background task for queue sanity keeper
             services.Configure<PersistentQueueMonitoringSettings>(options => Configuration.GetSection("QueueMonitoring").Bind(options));
             services.AddSingleton<IPersistentQueueMonitoringTask, PersistentQueueMonitoringTask>();
+            services.AddSingleton<IHostedService>( x => x.GetService<IPersistentQueueMonitoringTask>() as IHostedService);
 
             // Setup the consumer of the queue
+            services.Configure<HL7HandlerSettings>(options => Configuration.GetSection("Handling").Bind(options));
             services.AddSingleton<IHL7HandlerManager, HL7HandlerManager>();
+            services.AddSingleton<IHostedService>( x => x.GetService<IHL7HandlerManager>() as IHostedService);
 
             // Now let's spin up all the listeners, they are all producers to the queue
             var listenerConfigurations = Configuration.GetSection("Listeners");
-
+            
             foreach (var configuration in listenerConfigurations.GetChildren())
             {
                 var listenerSettings = new Hl7ListenerSettings();
                 configuration.Bind(listenerSettings);
-
-                services.AddTransient<HL7ListenerService>((factory) =>
+                services.AddTransient<IHostedService>((factory) =>
                 {
                     return new HL7ListenerService(Options.Create<Hl7ListenerSettings>(listenerSettings),
                         factory.GetRequiredService<IHL7Acknowledger>(),
@@ -74,6 +76,13 @@ namespace HL7Core.Service
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
             app.Map("/liveness", lapp => lapp.Run(async ctx => ctx.Response.StatusCode = 200));
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
+
         }
     }
 }

@@ -19,11 +19,14 @@ namespace HL7Core.Service
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseShutdownTimeout(TimeSpan.FromSeconds(10))
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                })
-                .UseStartup<Startup>()
-                .Build();
+                    logging.AddDebug();
+                    logging.AddConsole();
+                }).Build();
+
     }
 }
