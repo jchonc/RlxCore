@@ -24,8 +24,6 @@ namespace HL7Core.Service
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddDebug();
-                    logging.AddConsole();
                 }).Build();
 
     }

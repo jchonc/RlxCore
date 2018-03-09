@@ -9,7 +9,7 @@ namespace HL7Core.Service.Configuration
     {
         public string IpAddress { get; set; }
         public int Port { get; set; }
-        public string LogName { get; set; }
+        public string Name { get; set; }
         public long BufferLimit { get; set; }
 
     }

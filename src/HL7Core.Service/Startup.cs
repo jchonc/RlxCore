@@ -1,9 +1,5 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using HL7Core.PersistentQueue;
 using HL7Core.Service.Configuration;
 using HL7Core.Service.Tasks;
@@ -13,9 +9,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Hosting;
+using System;
 
 namespace HL7Core.Service
 {

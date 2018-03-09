@@ -33,7 +33,7 @@ namespace HL7Core.Service.Tasks
             _settings = settings?.Value ?? throw new ArgumentNullException(nameof(settings));
             _sqliteQueueManager = sqliteQueueManager;
             _hl7Acknowledger = hl7Acknowledger;
-            _logger = logFactory.CreateLogger(_settings.Port.ToString());
+            _logger = logFactory.CreateLogger(_settings.Name);
 
             var serverIp = IPAddress.Any;
             if(!string.IsNullOrEmpty(_settings.IpAddress))
@@ -47,6 +47,7 @@ namespace HL7Core.Service.Tasks
         {
             try
             {
+                _logger.LogInformation("Starting");
                 _listener.Start();
                 while (!stoppingToken.IsCancellationRequested)
                 {
